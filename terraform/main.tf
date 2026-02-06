@@ -29,7 +29,7 @@ resource "azurerm_container_group" "web" {
   container {
     name   = "nginx-server"
     # Usando imagem Microsoft para evitar erros de Docker Hub
-    image  = "mcr.microsoft.com/oss/nginx/nginx:1.25.3-alpine"
+    image  = "mcr.microsoft.com/azuredocs/aci-helloworld"
     cpu    = "0.5"
     memory = "1.0"
 

@@ -1,0 +1,11 @@
+# Ignorar binários do Terraform (evita o erro de arquivo grande)
+.terraform/
+.terraform.lock.hcl
+
+# Ignorar arquivos de estado (contém senhas e infos sensíveis)
+*.tfstate
+*.tfstate.backup
+*.tfvars
+
+# Ignorar arquivos de sistema
+.DS_Store

@@ -1,0 +1,43 @@
+name: "Deploy Infraestrutura Automatizada"
+
+on:
+  push:
+    branches:
+      - main
+
+# Define que todos os comandos rodem dentro da pasta 'terraform'
+defaults:
+  run:
+    working-directory: ./terraform
+
+jobs:
+  terraform:
+    name: "Terraform Apply"
+    runs-on: ubuntu-latest
+    
+    # As chaves que vamos configurar no GitHub Secrets
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+    steps:
+      - name: Baixar Código (Checkout)
+        uses: actions/checkout@v3
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        # O 'auto-approve' pula a pergunta de 'yes/no' pois não tem humano lá para responder
+        run: terraform apply -auto-approve

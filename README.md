@@ -25,7 +25,7 @@ Durante o desenvolvimento, tive alguns bloqueios de *Rate Limit* ao tentar baixa
 * Terraform instalado.
 
 ### Passo a Passo
-\`\`\`bash
+
 # 1. Clone o repositório
 git clone https://github.com/SEU_USUARIO/iac-automated-webserver.git
 
@@ -35,6 +35,6 @@ cd iac-automated-webserver/terraform
 # 3. Inicialize e Aplique
 terraform init
 terraform apply -auto-approve
-\`\`\`
+
 
 ---
